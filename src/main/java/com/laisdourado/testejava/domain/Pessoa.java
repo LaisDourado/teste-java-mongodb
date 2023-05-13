@@ -3,10 +3,16 @@ package com.laisdourado.testejava.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="pessoa")
+
 public class Pessoa implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	//id, nome, departamento e  lista de tarefas
+	@Id
 	private String id;
 	private String nome;
 	private String departamento;
