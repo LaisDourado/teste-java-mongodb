@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laisdourado.testejava.domain.Pessoa;
+import com.laisdourado.testejava.dto.PessoaDTO;
 import com.laisdourado.testejava.repository.PessoaRepository;
 import com.laisdourado.testejava.services.exception.ObjectNotFoundException;
 
@@ -22,6 +23,14 @@ public class PessoaService {
 	public Pessoa findById(String id) {
 		Optional<Pessoa> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
-		}
+	}
+	
+	public Pessoa insert(Pessoa obj){
+		return repo.insert(obj);
+	}
+	
+	public Pessoa fromDTO(PessoaDTO objDto){
+		return new Pessoa(objDto.getId(),objDto.getNome(),objDto.getDepartamento());
+	}
 }
 
