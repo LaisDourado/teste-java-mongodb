@@ -29,6 +29,11 @@ public class PessoaService {
 		return repo.insert(obj);
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);;
+	}
+	
 	public Pessoa fromDTO(PessoaDTO objDto){
 		return new Pessoa(objDto.getId(),objDto.getNome(),objDto.getDepartamento());
 	}
