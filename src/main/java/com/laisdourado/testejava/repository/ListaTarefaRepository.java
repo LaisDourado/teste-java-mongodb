@@ -2,14 +2,18 @@ package com.laisdourado.testejava.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.laisdourado.testejava.domain.ListaTarefas;
+import com.laisdourado.testejava.domain.Tarefa;
 
 @Repository
-public interface ListaTarefaRepository extends MongoRepository<ListaTarefas, String>{
+public interface ListaTarefaRepository extends MongoRepository<Tarefa, String>{
 
-	List<ListaTarefas>findByTituloContainingIgnoreCase(String text);
+	List<Tarefa> findByTituloContainingIgnoreCase(String text);
+	
+	List<Tarefa> findByFinalizadoFalseAndPessoaAlocadaIsNull(Pageable page);
+	
 }
 

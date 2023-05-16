@@ -19,9 +19,6 @@ public class Pessoa implements Serializable{
 	private String id;
 	private String nome;
 	private String departamento;
-	
-	@DBRef(lazy = true)
-	private List<ListaTarefas> listaTarefas = new ArrayList<>();
 
 	public Pessoa() {		
 	}
@@ -55,14 +52,6 @@ public class Pessoa implements Serializable{
 
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
-	}
-	
-	public List<ListaTarefas> getListaTarefas() {
-		return listaTarefas;
-	}
-
-	public void setListaTarefas(List<ListaTarefas> listaTarefas) {
-		this.listaTarefas = listaTarefas;
 	}
 
 	@Override

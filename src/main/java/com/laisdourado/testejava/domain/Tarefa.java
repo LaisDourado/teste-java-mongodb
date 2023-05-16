@@ -1,38 +1,44 @@
-package com.laisdourado.testejava.dto;
+package com.laisdourado.testejava.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-import com.laisdourado.testejava.domain.Tarefa;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class TarefasDTO implements Serializable{
+
+@Document
+public class Tarefa implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@Id	
 	private String id;
 	private String titulo;
 	private String descricao;
 	private Date prazo;
 	private String departamento;
 	private Double duracao;
-	private String idPessoaAlocada;
+	private Pessoa pessoaAlocada;
 	private boolean finalizado;
-	
-	public TarefasDTO() {
+		
+	public Tarefa() {
 	}
 
-	public TarefasDTO(Tarefa obj) {
-		id = obj.getId();
-		titulo = obj.getTitulo();
-		descricao = obj.getDescricao();
-		prazo = obj.getPrazo();
-		departamento = obj.getDepartamento();
-		duracao = obj.getDuracao();
-		idPessoaAlocada = Objects.nonNull(obj.getPessoaAlocada()) ? obj.getPessoaAlocada().getId() : null;
-		finalizado = obj.isFinalizado();
+	public Tarefa(String id, String titulo, String descricao, Date prazo, String departamento, Double duracao,
+			Pessoa pessoaAlocada, boolean finalizado) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.prazo = prazo;
+		this.departamento = departamento;
+		this.duracao = duracao;
+		this.pessoaAlocada = pessoaAlocada;
+		this.finalizado = finalizado;
 	}
 
 	public String getId() {
@@ -83,12 +89,12 @@ public class TarefasDTO implements Serializable{
 		this.duracao = duracao;
 	}
 
-	public String getIdPessoaAlocada() {
-		return idPessoaAlocada;
+	public Pessoa getPessoaAlocada() {
+		return pessoaAlocada;
 	}
 
-	public void setPessoa_alocada(String idPessoaAlocada) {
-		this.idPessoaAlocada = idPessoaAlocada;
+	public void setPessoaAlocada(Pessoa pessoaAlocada) {
+		this.pessoaAlocada = pessoaAlocada;
 	}
 
 	public boolean isFinalizado() {
@@ -102,5 +108,24 @@ public class TarefasDTO implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tarefa other = (Tarefa) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
 
 }

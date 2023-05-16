@@ -19,6 +19,9 @@ public class PessoaService {
 	public List<Pessoa> findAll(){
 		return repo.findAll();
 	}
+	public List<Pessoa> findAllByDepartamento(String departamento){
+		return repo.findByDepartamento(departamento);
+	}
 	
 	public Pessoa findById(String id) {
 		Optional<Pessoa> obj = repo.findById(id);
