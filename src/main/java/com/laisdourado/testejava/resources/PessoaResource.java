@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.laisdourado.testejava.domain.ListaTarefas;
 import com.laisdourado.testejava.domain.Pessoa;
 import com.laisdourado.testejava.dto.PessoaDTO;
 import com.laisdourado.testejava.services.PessoaService;
@@ -57,5 +58,11 @@ public class PessoaResource {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}/listaTarefas",method=RequestMethod.GET)
+	public ResponseEntity<List<ListaTarefas>> findlista(@PathVariable String id){
+		Pessoa obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getListaTarefas());		
 	}
 }
