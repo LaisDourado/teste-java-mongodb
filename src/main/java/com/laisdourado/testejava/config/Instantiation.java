@@ -41,6 +41,9 @@ public class Instantiation implements CommandLineRunner{
 		ListaTarefas lista2 = new ListaTarefas(null,sdf.parse("14/05/2023"), "Teste2 - Java", "Alteração de tarefas",new proprietarioDTO(mario));
 		
 		listaTarefaRepository.saveAll(Arrays.asList(lista1, lista2));
+		
+		mario.getListaTarefas().addAll(Arrays.asList(lista1,lista2));
+		pessoaRepository.save(mario);
 	}
 		
 }

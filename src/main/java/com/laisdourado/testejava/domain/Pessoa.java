@@ -1,9 +1,12 @@
 package com.laisdourado.testejava.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="pessoa")
@@ -16,6 +19,9 @@ public class Pessoa implements Serializable{
 	private String id;
 	private String nome;
 	private String departamento;
+	
+	@DBRef(lazy = true)
+	private List<ListaTarefas> listaTarefas = new ArrayList<>();
 
 	public Pessoa() {		
 	}
@@ -49,6 +55,14 @@ public class Pessoa implements Serializable{
 
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
+	}
+	
+	public List<ListaTarefas> getListaTarefas() {
+		return listaTarefas;
+	}
+
+	public void setListaTarefas(List<ListaTarefas> listaTarefas) {
+		this.listaTarefas = listaTarefas;
 	}
 
 	@Override
