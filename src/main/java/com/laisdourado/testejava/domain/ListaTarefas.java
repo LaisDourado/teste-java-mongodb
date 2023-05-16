@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.laisdourado.testejava.dto.proprietarioDTO;
+
 @Document
 public class ListaTarefas implements Serializable {
 
@@ -19,12 +21,12 @@ public class ListaTarefas implements Serializable {
 	private Date data;
 	private String titulo;
 	private String texto;
-	private Pessoa proprietario;
+	private proprietarioDTO proprietario;
 	
 	public ListaTarefas() {
 	}
 
-	public ListaTarefas(String id, Date data, String titulo, String texto, Pessoa proprietario) {
+	public ListaTarefas(String id, Date data, String titulo, String texto, proprietarioDTO proprietario) {
 		super();
 		this.id = id;
 		this.data = data;
@@ -65,11 +67,11 @@ public class ListaTarefas implements Serializable {
 		this.texto = texto;
 	}
 
-	public Pessoa getProprietario() {
+	public proprietarioDTO getProprietario() {
 		return proprietario;
 	}
 
-	public void setProprietario(Pessoa proprietario) {
+	public void setProprietario(proprietarioDTO proprietario) {
 		this.proprietario = proprietario;
 	}
 	

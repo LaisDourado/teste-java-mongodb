@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.laisdourado.testejava.domain.ListaTarefas;
 import com.laisdourado.testejava.domain.Pessoa;
+import com.laisdourado.testejava.dto.proprietarioDTO;
 import com.laisdourado.testejava.repository.ListaTarefaRepository;
 import com.laisdourado.testejava.repository.PessoaRepository;
 
@@ -33,11 +34,12 @@ public class Instantiation implements CommandLineRunner{
 		Pessoa natalia = new Pessoa(null,"Natalia Silva","Administrativo");
 		Pessoa mario = new Pessoa(null,"Mario Cezar","Finaceiro");
 		Pessoa cassandra = new Pessoa(null,"Cassandra Sousa","Administrativo");
-		
-		ListaTarefas lista1 = new ListaTarefas(null,sdf.parse("15/05/2023"), "Teste1 - Java", "Criação de tarefas", mario);
-		ListaTarefas lista2 = new ListaTarefas(null,sdf.parse("14/05/2023"), "Teste2 - Java", "Alteração de tarefas",mario);
-		
+
 		pessoaRepository.saveAll(Arrays.asList(natalia, mario, cassandra));
+		
+		ListaTarefas lista1 = new ListaTarefas(null,sdf.parse("15/05/2023"), "Teste1 - Java", "Criação de tarefas", new proprietarioDTO(mario));
+		ListaTarefas lista2 = new ListaTarefas(null,sdf.parse("14/05/2023"), "Teste2 - Java", "Alteração de tarefas",new proprietarioDTO(mario));
+		
 		listaTarefaRepository.saveAll(Arrays.asList(lista1, lista2));
 	}
 		
