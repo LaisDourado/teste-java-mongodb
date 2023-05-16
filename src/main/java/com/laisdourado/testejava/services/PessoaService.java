@@ -34,12 +34,15 @@ public class PessoaService {
 		repo.deleteById(id);;
 	}
 	
-	public Pessoa update(Pessoa obj) {
-		Pessoa newObj = repo.findOne(obj.getId());
-		updateData(newObj, obj);
-		return repo.save(newObj);
+	public Pessoa update(Pessoa entity) {
+
+	     Pessoa newObj = repo.findById(entity.getId()).get();
+
+	     updateData(newObj, entity);
+
+	     return repo.save(newObj);
+
 	}
-	
 	private void updateData(Pessoa newObj, Pessoa obj) {
 		
 		newObj.setNome(obj.getNome());
