@@ -1,12 +1,15 @@
 package com.laisdourado.testejava.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.laisdourado.testejava.dto.TarefasDTO;
 import com.laisdourado.testejava.dto.proprietarioDTO;
 
 @Document
@@ -22,6 +25,8 @@ public class ListaTarefas implements Serializable {
 	private String titulo;
 	private String texto;
 	private proprietarioDTO proprietario;
+	
+	private List<TarefasDTO> tarefas = new ArrayList<>();
 	
 	public ListaTarefas() {
 	}
@@ -75,6 +80,14 @@ public class ListaTarefas implements Serializable {
 		this.proprietario = proprietario;
 	}
 	
+	public List<TarefasDTO> getTarefas() {
+		return tarefas;
+	}
+
+	public void setTarefas(List<TarefasDTO> tarefas) {
+		this.tarefas = tarefas;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -91,6 +104,5 @@ public class ListaTarefas implements Serializable {
 		ListaTarefas other = (ListaTarefas) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 }
